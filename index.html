@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRYPTO VAULT SHOP V8 - Admin Hidden</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a12;color:#fff;font-family:Arial}
+header{background:#0f0f1a;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #00ff88;position:sticky;top:0;z-index:100}
+.logo{font-size:24px;font-weight:bold;color:#00ff88}
+.logo span{color:#fff}
+.topBtn{background:#1a1a2e;color:#fff;border:2px solid #00ff88;padding:14px 24px;border-radius:25px;margin:3px;font-size:18px;font-weight:bold}
+.hero{background:linear-gradient(135deg,#0f0f1a,#111827,#0a0a12);padding:45px 18px;text-align:center}
+.hero h1{font-size:34px;color:#00ff88;line-height:1.1}
+.hero p{color:#ccc;margin:12px;font-size:15px}
+.hero button{background:#00ff88;color:#000;padding:16px 30px;border:none;border-radius:25px;font-size:18px;font-weight:bold}
+.contactBar{background:#25D366;color:#000;padding:12px;border-radius:12px;margin:12px 0;font-weight:bold}
+.contactBar a{color:#000;text-decoration:none}
+.stats{display:flex;justify-content:center;gap:10px;margin:15px}
+.stat{background:#1a1a2e;padding:12px;border-radius:12px;flex:1;text-align:center}
+.stat b{color:#00ff88;font-size:20px}
+.section{padding:18px}
+.section h2{font-size:24px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:#141424;border:1px solid #2a2a4a;border-radius:18px;padding:14px;overflow:hidden}
+.card img{width:100%;height:130px;object-fit:cover;border-radius:12px;background:#000}
+.card .logoBox{width:70px;height:70px;background:#fff;border-radius:15px;margin:-35px auto 8px;display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;border:3px solid #00ff88}
+.card h3{font-size:17px;margin:6px 0}
+.card p{font-size:13px;color:#bbb;line-height:1.4;height:52px;overflow:hidden}
+.price{color:#00ff88;font-size:22px;font-weight:bold}
+.oldPrice{color:#888;text-decoration:line-through;font-size:14px}
+.btn{background:#00ff88;color:#000;border:none;padding:12px 14px;border-radius:20px;font-weight:bold;width:100%;margin-top:8px;font-size:16px}
+.btn2{background:#1a1a2e;color:#fff;border:1px solid #00ff88;padding:12px 14px;border-radius:20px;width:100%;margin-top:6px}
+.about{background:#111827;padding:22px;margin:14px;border-radius:18px;border:1px solid #333}
+.about h2{color:#00ff88}
+.cartBox{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:3px solid #00ff88;padding:12px;z-index:200;display:flex;justify-content:space-between;align-items:center}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000ee;z-index:300;overflow-y:auto;padding:20px}
+.modal.show{display:block}
+.modalBox{background:#111827;padding:18px;border-radius:18px;border:1px solid #333}
+input,textarea,select{width:100%;padding:12px;margin:7px 0;border-radius:10px;border:1px solid #333;background:#0a0a12;color:#fff;font-size:15px}
+.cryptoCard{background:#0a0a12;padding:12px;border-radius:12px;border:1px solid #00ff88;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+.cryptoCard b{color:#00ff88}
+.adminGrid{display:grid;grid-template-columns:1fr;gap:8px}
+.orderCard{background:#0a0a12;padding:12px;border-radius:12px;border:1px solid #ffeb3b;margin:8px 0}
+.deliveryBox{background:#0a0a12;padding:14px;border-radius:14px;border:2px solid #25D366;margin:10px 0}
+.deliveryBox.active{border-color:#00ff88;background:#0a2e1a}
+footer{background:#0f0f1a;padding:22px;text-align:center;color:#ccc;font-size:14px;padding-bottom:90px;line-height:1.6}
+/* NEW - MUSA DELETE SPACE - SAME DESIGN */
+.adminProdList{max-height:420px;overflow-y:auto;background:#000;padding:10px;border-radius:12px;border:1px solid #333;margin:8px 0}
+.adminProdItem{background:#141424;border:1px solid #2a2a4a;border-radius:12px;padding:10px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.adminProdItem b{font-size:15px}
+.adminProdItem span{color:#00ff88;font-size:14px}
+.delBtn{background:#ff3b3b;color:#fff;border:none;padding:10px 16px;border-radius:20px;font-weight:bold;font-size:14px}
+.delBtn2{background:#ffeb3b;color:#000;border:none;padding:10px 16px;border-radius:20px;font-weight:bold;width:100%;margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🔐 CRYPTO <span>VAULT SHOP</span></div>
+<div><button class="topBtn" onclick="showPage('home')">🏠 HOME</button><button class="topBtn" onclick="showPage('about')">ℹ️ ABOUT</button></div>
+</header>
+<div id="homePage">
+<div class="hero"><h1>🔐 CRYPTO VAULT SHOP<br>SOFTWARE STORE</h1><p>Premium Software, Tools, AI Apps & Licenses<br>Pay with Crypto - Instant Delivery to Email or WhatsApp!</p>
+<div class="contactBar">📞 CUSTOMER CARE: <a href="mailto:christabecorts@gmail.com">📧 christabecorts@gmail.com</a> | <a href="https://wa.me/12125550123">💬 +1 212 555 0123</a></div>
+<button onclick="document.getElementById('products').scrollIntoView()">🛒 SHOP SOFTWARE NOW</button>
+<div class="stats"><div class="stat"><b>500+</b><br>Software</div><div class="stat"><b>10k+</b><br>Customers</div><div class="stat"><b>3</b><br>Crypto Pay</div></div>
+<p style="color:#ffeb3b">✅ Delivery to Email or WhatsApp - 5 Minutes!</p></div>
+<div class="section"><h2>🔥 BEST SELLERS</h2><div class="grid" id="products"></div></div>
+<div class="about"><h2>ℹ️ ABOUT CRYPTO VAULT SHOP</h2><p style="line-height:1.6;margin-top:8px">Crypto Vault Shop is #1 for premium software. Buy software, pay with crypto, receive download link + license key on your Email or WhatsApp within 5 minutes.</p>
+<div style="background:#000;padding:14px;border-radius:12px;margin-top:12px"><p style="color:#00ff88;font-size:18px;font-weight:bold">📞 CUSTOMER CARE - CONTACT US 24/7</p><p style="margin-top:8px">📧 Email: <a href="mailto:christabecorts@gmail.com" style="color:#ffeb3b">christabecorts@gmail.com</a></p><p>💬 WhatsApp: <a href="https://wa.me/12125550123" style="color:#25D366">+1 212 555 0123</a></p><button class="btn" style="background:#25D366" onclick="window.open('https://wa.me/12125550123?text=Hi Crypto Vault Shop, I need help!','_blank')">💬 CHAT ON WHATSAPP</button><button class="btn" onclick="window.location.href='mailto:christabecorts@gmail.com'">📧 EMAIL US</button></div></div>
+</div>
+<div id="aboutPage" style="display:none"><div class="about"><h2>ℹ️ ABOUT US</h2><p style="line-height:1.7;margin-top:10px">We sell genuine software licenses. After payment, we send your product to your Email or WhatsApp - You choose!</p><p style="margin-top:12px">✅ 100% Genuine Licenses<br>✅ Instant Delivery to Email / WhatsApp<br>✅ 30 Days Money Back<br>✅ Lifetime Updates</p><div style="background:#000;padding:14px;border-radius:12px;margin-top:12px"><p style="color:#00ff88;font-weight:bold;font-size:18px">📞 CUSTOMER CARE</p><p>📧 christabecorts@gmail.com</p><p>💬 +1 212 555 0123</p><button class="btn" style="background:#25D366" onclick="window.open('https://wa.me/12125550123','_blank')">💬 WHATSAPP US</button></div><button class="btn" onclick="showPage('home')">Back Home</button></div></div>
+<div id="adminPage" style="display:none"><div class="section"><h2>⚙️ ADMIN PANEL - SECRET URL ONLY!</h2><p style="color:#ffeb3b">You used secret URL! Save it - Nobody else knows!</p><div style="background:#000;padding:12px;border-radius:10px;border:1px solid #ffeb3b">Admin URL:<br><b id="adminUrlText" style="color:#00ff88"></b></div>
+<div class="adminGrid"><div><label>1. BITCOIN (BTC) 🟠</label><input id="addr_BTC" placeholder="bc1q your BTC..."></div><div><label>2. USDT (TRC20) 🟢</label><input id="addr_USDT" placeholder="T your USDT..."></div><div><label>3. ETHEREUM (ETH) 🔵</label><input id="addr_ETH" placeholder="0x your ETH..."></div></div>
+<label>Admin Password</label><input id="adminPass" type="password" placeholder="admin123">
+<button class="btn" onclick="saveAdmin()">💾 SAVE 3 CRYPTO ADDRESSES</button><p id="adminMsg" style="color:#00ff88"></p>
+<h3 style="margin-top:20px">📦 ORDERS - Customer Email / WhatsApp</h3><div id="ordersList"><p style="color:#888">No orders yet</p></div>
+
+<!-- MUSA NEW DELETE SPACE - START -->
+<h3 style="margin-top:22px;color:#ff3b3b">🗑️ MANAGE PRODUCTS - DELETE HERE</h3>
+<p style="color:#ccc;font-size:13px">You have <b id="prodCount" style="color:#00ff88">0</b> products - Click DELETE to remove any product - Shop will update instantly!</p>
+<div class="adminProdList" id="adminProductsList"><p style="color:#888">Loading products...</p></div>
+<button class="delBtn2" onclick="if(confirm('Delete ALL products?')){products=[];localStorage.setItem('myProducts',JSON.stringify(products));renderProducts();renderAdminProducts();alert('All deleted!')}">🗑️ DELETE ALL PRODUCTS</button>
+<!-- MUSA NEW DELETE SPACE - END -->
+
+<h3 style="margin-top:20px">➕ ADD NEW PRODUCT</h3>
+<label>Product Name</label><input id="pName" placeholder="e.g Photoshop Pro 2026">
+<label>Logo - Upload or emoji</label><input type="file" id="pLogoFile" accept="image/*"><input id="pLogo" placeholder="Or emoji">
+<label>Product Image URL</label><input id="pImage" placeholder="https://...">
+<label>Price ($)</label><input id="pPrice" type="number" placeholder="49">
+<label>Old Price ($)</label><input id="pOldPrice" type="number" placeholder="99">
+<label>Category</label><select id="pCat"><option>Design</option><option>AI Tools</option><option>Video Editor</option><option>Office</option><option>Antivirus</option><option>Trading</option></select>
+<label>Description</label><textarea id="pDesc" placeholder="Describe..."></textarea>
+<label>Download Link</label><input id="pDownload" placeholder="https://drive.google.com/...">
+<button class="btn" onclick="addProduct()">➕ ADD PRODUCT</button>
+<button class="btn2" onclick="showPage('home')">Back to Shop</button>
+<button class="btn2" onclick="copyAdminUrl()">📋 COPY ADMIN LINK</button>
+</div></div>
+<div class="modal" id="checkoutModal"><div class="modalBox"><h2 style="color:#00ff88">💳 CRYPTO CHECKOUT - Only 3!</h2><p id="checkoutProduct"></p><h3 style="margin-top:15px;color:#ffeb3b">📧 HOW DO YOU WANT TO RECEIVE?</h3>
+<div class="deliveryBox" id="boxEmail" onclick="selectDelivery('email')"><p style="font-size:18px">📧 EMAIL DELIVERY</p><input id="buyerEmail" placeholder="Enter your email" onclick="event.stopPropagation()"></div>
+<div class="deliveryBox" id="boxWhats" onclick="selectDelivery('whatsapp')"><p style="font-size:18px">💬 WHATSAPP DELIVERY</p><input id="buyerWhats" placeholder="Enter WhatsApp" onclick="event.stopPropagation()"></div>
+<p style="margin-top:10px">Choose Crypto - Only 3:</p><div id="cryptoList"></div>
+<label>Transaction ID</label><input id="buyerTx" placeholder="Paste TX ID">
+<button class="btn" onclick="confirmOrder()">✅ I HAVE PAID - SEND TO MY EMAIL / WHATSAPP</button><button class="btn2" onclick="closeCheckout()">Close</button><p id="orderMsg" style="color:#00ff88"></p>
+<div style="background:#000;padding:10px;border-radius:10px;margin-top:10px"><p>Need help? christabecorts@gmail.com / +1 212 555 0123</p><button class="btn" style="background:#25D366" onclick="window.open('https://wa.me/12125550123','_blank')">💬 WHATSAPP CUSTOMER CARE</button></div>
+</div></div>
+<div class="modal" id="detailModal"><div class="modalBox"><img id="dImg" style="width:100%;border-radius:12px"><div style="text-align:center;margin:10px"><div id="dLogo" style="font-size:50px"></div><h2 id="dName"></h2><p class="price" id="dPrice"></p><p id="dDesc" style="color:#bbb;line-height:1.6;margin:10px"></p></div><button class="btn" id="dBuyBtn">🛒 BUY NOW</button><button class="btn2" onclick="closeDetail()">Close</button></div></div>
+<div class="cartBox"><div><span id="cartCount">🛒 Cart: 0</span> <span id="cartTotal" style="color:#00ff88;font-weight:bold">$0</span></div><button style="background:#00ff88;color:#000;padding:12px 20px;border:none;border-radius:20px;font-weight:bold" onclick="openCartCheckout()">CHECKOUT →</button></div>
+<footer>© 2026 Crypto Vault Shop<br><b style="color:#00ff88">📞 CUSTOMER CARE</b><br>📧 <a href="mailto:christabecorts@gmail.com" style="color:#ffeb3b">christabecorts@gmail.com</a><br>💬 <a href="https://wa.me/12125550123" style="color:#25D366">+1 212 555 0123</a><br>Pay with Crypto - BTC USDT ETH - Only 3!</footer>
+<script>
+function copyAdminUrl(){ let base=window.location.href.split('?')[0].split('#')[0]; let url=base+'?admin'; navigator.clipboard.writeText(url); alert('Admin link copied!\n'+url); }
+function checkAdminUrl(){ let url=window.location.href.toLowerCase(); let base=window.location.href.split('?')[0].split('#')[0]; document.getElementById('adminUrlText').innerText=base+'?admin'; if(url.includes('admin')){ showPage('admin'); return true; } return false; }
+let products=[
+{name:'Photoshop Pro 2026',logo:'🎨',image:'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600',price:49,old:99,cat:'Design',desc:'Adobe Photoshop Pro 2026 full version. All AI tools, lifetime license, Windows + Mac.',download:'https://example.com/download/photoshop'},
+{name:'AI Video Editor Pro',logo:'🎬',image:'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600',price:39,old:89,cat:'Video Editor',desc:'AI Video Editor - Auto cut, subtitles, 4K export, 1000+ templates.',download:'https://example.com/download/video'},
+{name:'Office Suite 2026',logo:'📊',image:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600',price:29,old:79,cat:'Office',desc:'Office Suite 2026 - Word, Excel, PowerPoint full. Lifetime license.',download:'https://example.com/download/office'},
+{name:'Trading Bot AI',logo:'📈',image:'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=600',price:99,old:199,cat:'Trading',desc:'AI Trading Bot - Auto trade BTC, ETH, Forex. 85% win rate.',download:'https://example.com/download/trading'},
+{name:'Antivirus Max Pro',logo:'🛡️',image:'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600',price:19,old:49,cat:'Antivirus',desc:'Antivirus Max Pro - Protect PC from virus. 1 Year for 3 devices.',download:'https://example.com/download/antivirus'},
+{name:'AI Writer Pro',logo:'✍️',image:'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600',price:25,old:59,cat:'AI Tools',desc:'AI Writer Pro - Write articles, ads, posts with AI. 10k words per day.',download:'https://example.com/download/writer'}
+];
+let cart=[]; let currentProduct=null; let deliveryMethod='email';
+let cryptoAddr=JSON.parse(localStorage.getItem('cryptoAddr3')||'{"BTC":"bc1qexample123","USDT":"TExample123","ETH":"0x123456789"}');
+let orders=JSON.parse(localStorage.getItem('orders')||'[]');
+function loadProducts(){ let saved=JSON.parse(localStorage.getItem('myProducts')||'null'); if(saved) products=saved; renderProducts(); renderAdmin(); renderOrders(); renderAdminProducts(); checkAdminUrl(); }
+function renderProducts(){ let h=''; products.forEach((p,i)=>{ h+=`<div class="card"><img src="${p.image}"><div class="logoBox">${p.logo}</div><h3>${p.name}</h3><p style="color:#00ff88">${p.cat} • ⭐⭐⭐⭐⭐</p><p>${p.desc}</p><div><span class="price">$${p.price}</span> <span class="oldPrice">$${p.old}</span></div><button class="btn" onclick="buyNow(${i})">🛒 BUY NOW - $${p.price}</button><button class="btn2" onclick="showDetail(${i})">👁️ View Details</button></div>`; }); document.getElementById('products').innerHTML=h; }
+function renderAdmin(){ document.getElementById('addr_BTC').value=cryptoAddr.BTC; document.getElementById('addr_USDT').value=cryptoAddr.USDT; document.getElementById('addr_ETH').value=cryptoAddr.ETH; }
+function renderAdminProducts(){ let el=document.getElementById('adminProductsList'); let cnt=document.getElementById('prodCount'); if(cnt) cnt.innerText=products.length; if(products.length==0){ el.innerHTML='<p style="color:#888">No products - Add new one below!</p>'; return; } let h=''; products.forEach((p,i)=>{ h+=`<div class="adminProdItem"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">${p.logo}</span><div><b>${p.name}</b><br><span>$${p.price} • ${p.cat}</span></div></div><button class="delBtn" onclick="deleteProduct(${i})">🗑️ DELETE</button></div>`; }); el.innerHTML=h; }
+function deleteProduct(i){ if(!confirm('Delete '+products[i].name+' ?')) return; products.splice(i,1); localStorage.setItem('myProducts',JSON.stringify(products)); renderProducts(); renderAdminProducts(); alert('✅ Deleted! Product removed from shop!'); }
+function renderOrders(){ if(orders.length==0){document.getElementById('ordersList').innerHTML='<p style="color:#888">No orders yet</p>';return;} let h=''; orders.forEach(o=>{ h+=`<div class="orderCard"><b>${o.product}</b> - $${o.price}<br>📧 Email: ${o.email||'---'}<br>💬 WhatsApp: ${o.whatsapp||'---'}<br>📦 Delivery: <b style="color:#00ff88">${o.delivery}</b><br>TX: ${o.tx}<br><button onclick="sendToCustomer('${o.delivery}','${o.email}','${o.whatsapp}','${o.download}')">📤 SEND PRODUCT NOW</button></div>`; }); document.getElementById('ordersList').innerHTML=h; }
+function sendToCustomer(delivery,email,whats,dl){ if(delivery==='email'){ window.location.href='mailto:'+email+'?subject=Your Software&body=Download: '+dl; } else { let num=whats.replace(/[^0-9]/g,''); window.open('https://wa.me/'+num+'?text='+encodeURIComponent('Hi! Here is your download: '+dl),'_blank'); } }
+function showPage(p){ document.getElementById('homePage').style.display=p==='home'?'block':'none'; document.getElementById('aboutPage').style.display=p==='about'?'block':'none'; document.getElementById('adminPage').style.display=p==='admin'?'block':'none'; window.scrollTo(0,0); }
+function saveAdmin(){ if(document.getElementById('adminPass').value!=='admin123'){alert('Wrong password! Use admin123');return;} cryptoAddr={BTC:document.getElementById('addr_BTC').value,USDT:document.getElementById('addr_USDT').value,ETH:document.getElementById('addr_ETH').value}; localStorage.setItem('cryptoAddr3',JSON.stringify(cryptoAddr)); document.getElementById('adminMsg').innerText='✅ Saved! Only 3 addresses saved!'; }
+function selectDelivery(m){ deliveryMethod=m; document.getElementById('boxEmail').classList.remove('active'); document.getElementById('boxWhats').classList.remove('active'); document.getElementById(m==='email'?'boxEmail':'boxWhats').classList.add('active'); }
+function addProduct(){ let name=document.getElementById('pName').value; if(!name){alert('Enter name!');return;} let logo=document.getElementById('pLogo').value||'💻'; let file=document.getElementById('pLogoFile').files[0]; if(file){ let r=new FileReader(); r.onload=e=>{ logo='<img src="'+e.target.result+'" style="width:60px;height:60px;border-radius:12px">'; finishAdd(logo); }; r.readAsDataURL(file); return; } finishAdd(logo); }
+function finishAdd(logo){ let p={name:document.getElementById('pName').value,logo:logo,image:document.getElementById('pImage').value||'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600',price:parseInt(document.getElementById('pPrice').value)||29,old:parseInt(document.getElementById('pOldPrice').value)||79,cat:document.getElementById('pCat').value,desc:document.getElementById('pDesc').value||'Premium software',download:document.getElementById('pDownload').value||'https://example.com/download'}; products.push(p); localStorage.setItem('myProducts',JSON.stringify(products)); renderProducts(); renderAdminProducts(); alert('Product added!'); showPage('home'); }
+function showDetail(i){ let p=products[i]; document.getElementById('dImg').src=p.image; document.getElementById('dLogo').innerHTML=p.logo; document.getElementById('dName').innerText=p.name; document.getElementById('dPrice').innerText='$'+p.price+' (Old $'+p.old+')'; document.getElementById('dDesc').innerText=p.desc; document.getElementById('dBuyBtn').onclick=()=>{closeDetail();buyNow(i);}; document.getElementById('detailModal').classList.add('show'); }
+function closeDetail(){ document.getElementById('detailModal').classList.remove('show'); }
+function buyNow(i){ currentProduct=products[i]; cart.push(products[i]); updateCart(); openCheckout(); }
+function updateCart(){ document.getElementById('cartCount').innerText='🛒 Cart: '+cart.length; let t=cart.reduce((s,p)=>s+p.price,0); document.getElementById('cartTotal').innerText='$'+t; }
+function openCartCheckout(){ if(cart.length==0){alert('Cart empty! Add product first');return;} currentProduct={name:cart.length+' Products',price:cart.reduce((s,p)=>s+p.price,0),download:cart.map(p=>p.download).join(', ')}; openCheckout(); }
+function openCheckout(){ document.getElementById('checkoutProduct').innerHTML='<b>'+currentProduct.name+'</b><br><span class="price">$'+currentProduct.price+'</span>'; let list=''; let coins=[['BTC','Bitcoin 🟠'],['USDT','USDT TRC20 🟢'],['ETH','Ethereum 🔵']]; coins.forEach(c=>{ if(cryptoAddr[c[0]]) list+=`<div class="cryptoCard"><div><b>${c[1]}</b><br><span style="font-size:12px;word-break:break-all">${cryptoAddr[c[0]]}</span></div><button onclick="copyAddr('${cryptoAddr[c[0]]}')">Copy</button></div>`; }); document.getElementById('cryptoList').innerHTML=list; selectDelivery('email'); document.getElementById('checkoutModal').classList.add('show'); }
+function closeCheckout(){ document.getElementById('checkoutModal').classList.remove('show'); }
+function copyAddr(a){ navigator.clipboard.writeText(a); alert('Address copied: '+a); }
+function confirmOrder(){ let email=document.getElementById('buyerEmail').value.trim(); let whats=document.getElementById('buyerWhats').value.trim(); let tx=document.getElementById('buyerTx').value.trim(); if(deliveryMethod==='email' && !email){alert('Enter your Email!');return;} if(deliveryMethod==='whatsapp' && !whats){alert('Enter your WhatsApp number!');return;} if(!tx){alert('Enter TX ID!');return;}
+ let order={product:currentProduct.name,price:currentProduct.price,email:email,whatsapp:whats,delivery:deliveryMethod,tx:tx,download:currentProduct.download||'https://example.com/download'}; orders.push(order); localStorage.setItem('orders',JSON.stringify(orders)); renderOrders();
+ document.getElementById('orderMsg').innerHTML='✅ Order received!<br>We will send your software to <b style="color:#ffeb3b">'+(deliveryMethod==='email'?email:whats)+'</b> via '+(deliveryMethod==='email'?'EMAIL':'WHATSAPP')+' within 5 minutes!<br><br>Need help? christabecorts@gmail.com / +1 212 555 0123';
+ if(deliveryMethod==='whatsapp'){ let num=whats.replace(/[^0-9]/g,''); window.open('https://wa.me/'+num+'?text='+encodeURIComponent('Hi! I just paid for '+order.product+' - TX: '+tx+' - Please send my software!'),' _blank'); }
+ cart=[]; updateCart(); }
+loadProducts();
+</script>
+</body>
+</html>
